@@ -1,48 +1,54 @@
 package com.generics;
 
-import java.util.Scanner;
+import java.util.Arrays;
 
 /*
  * Purpose to find maximum string among three strings using findMax method
  */
-public class FindMax {
+public class FindMax<T extends Comparable<T>> {
+    T[] parameter;
 
-    private static <T extends Comparable<T>> void compareTo(T s1, T s2, T s3) {
+    public FindMax(T[] parameter) {
+        this.parameter = parameter;
+    }
 
-        T max = s1;
-
-        if (s2.compareTo(max) > 0) {
-            max = s2;
+    public static <T> void printMax(T[] parameter, T maximum) {
+        for (T i : parameter) {
+            System.out.println(i);
         }
-        if (s3.compareTo(max) > 0) {
-            max = s3;
-        }
-        System.out.println("The maximum among three is : " + max);
+        System.out.printf("maximum of array is: ", maximum, parameter);
+    }
+
+    /*
+     * Purpose - Used Generic method to find maximum values
+     */
+
+    public static <T extends Comparable<T>> T maximum(T[] parameter) {
+        Arrays.sort(parameter);
+        int length = parameter.length;
+        T max = parameter[length - 1];
+		
+		max = parameter[0];
+		for (T element : parameter) {
+	        if (element.compareTo(max) > 0) {
+	            max = element;
+	        }
+	    }
+
+        printMax(parameter, max);
+        return max;
     }
 
     public static void main(String[] args) {
-        // TODO Auto-generated method stub
 
-        Integer a, b, c;
-        Float F1, F2, F3;
-        String S1, S2, S3;
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Enter the three integers");
-        a = sc.nextInt();
-        b = sc.nextInt();
-        c = sc.nextInt();
-        compareTo(a, b, c);
-        System.out.println("Enter the three floats");
-        F1 = sc.nextFloat();
-        F2 = sc.nextFloat();
-        F3 = sc.nextFloat();
-        compareTo(F1, F2, F3);
-        System.out.println("Enter the three strings");
-        S1 = sc.next();
-        S2 = sc.next();
-        S3 = sc.next();
-        compareTo(S1, S2, S3);
-        sc.close();
+
+        Integer[] maximumOFintegers = { 16, 34, 15, 32, 41, 67, 5, 59 };
+        System.out.println("The maximum of integers is : " + maximum(maximumOFintegers));
+        Float[] maximumOfFloat = { 1.3f, 4.5f, 6.7f, 7.8f, 3.3f, 2.9f, 9.0f, 1.8f };
+        System.out.println("The maximum of floats is : " + maximum(maximumOfFloat));
+        String[] maximumOfString = { "zzzz", "pqr", "xyz", "ijk", "stu", "ijk", "efg", "mno" };
+        System.out.println("The maximum of strings is : " + maximum(maximumOfString));
+
     }
 
 }
