@@ -5,16 +5,10 @@ import java.util.Scanner;
 /*
  * Purpose to find maximum string among three strings using findMax method
  */
-public class FindMax <T extends Comparable<T>>{
-    T a,b,c;
+public class FindMax {
 
-    public FindMax(T a, T b, T c) {
-        this.a=a;
-        this.b=b;
-        this.c=c;
-    }
     private static <T extends Comparable<T>> void compareTo(T s1, T s2, T s3) {
-        // TODO Auto-generated method stub
+
         T max = s1;
 
         if (s2.compareTo(max) > 0) {
@@ -27,6 +21,8 @@ public class FindMax <T extends Comparable<T>>{
     }
 
     public static void main(String[] args) {
+        // TODO Auto-generated method stub
+
         Integer a, b, c;
         Float F1, F2, F3;
         String S1, S2, S3;
